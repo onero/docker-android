@@ -13,35 +13,33 @@
 ## Requirements
 In order to utilize this image, you only need to have the latest version of docker installed!
 
+## Includes
+- APIs: android-28
+- Android SDK 25.2.5
+- Build-Tools: 25.0.2
+- Gradle 4.10.3
+
+## Tagging scheme
+- ${HIGHEST_ANDROID_API_VERSION}-  
+${HIGHEST_ANDROID_SDK_VERSION}-  
+${BUILD_TOOLS_VERSION}-  
+${GRADLE_VERSION}
+- e.g. 28-25.2.5-25.0.2-4.10.3
+
 ## Usage
-
-1. Download the docker-compose file to the root of your Ionic project.
-2. Add the following line to your package.json scripts array:  
-``` 
-"scripts": {
-    "ionic-serve": "ng run app:ionic-cordova-serve --host=0.0.0.0 --port=8100 --cordova-mock", 
-}
+### Pull from Docker Hub
 ```
-3. Run the following command
-
+docker pull beevelop/android:latest
+```  
+### Build from GitHub
 ```
-docker compose-up
+docker build -t beevelop/android github.com/adamino/docker-android
+```  
+### Run image
 ```
-
-This way you will see the output of the container.
-The app will be served at 
-[localhost:8100 ](http://localhost:8100)
-
-If you want to run the container without seeing the output simply run:
+docker run -it adamino/android bash
+```  
+### Use as base image
 ```
-docker-compose up -d
-```
-
-If you want to attach a shell execute the the following command:
-```
-docker exec -it {NameOfYouContainer} /bin/sh
-```
-E.g. 
-``` 
-docker exec -it myAwesomeApp_ionic_1 /bin/sh 
+FROM adamino/android:latest
 ```
